@@ -1,0 +1,86 @@
+﻿@page "/fetchdata"
+@inject TestDataAccess testData
+
+<PageTitle>List of Countries</PageTitle>
+
+<h1>Click buttons</h1>
+
+<p>
+    <button @onclick="AddRoleToCacheAsync">
+        Add Role
+    </button>
+</p>
+
+<p>@roleCacheAddition</p>
+
+<p>
+    <button @onclick="AddDepartmentToCacheAsync">
+        Add Department
+    </button>
+</p>
+
+<p>@departmentCacheAddition</p>
+
+<p>
+    <button @onclick="AddEmployeeToCacheAsync">
+        Add Employee
+    </button>
+</p>
+
+<p>@employeeCacheAddition</p>
+
+<p>
+    <button @onclick="AddAccountToCacheAsync">
+        Add Account
+    </button>
+</p>
+
+<p>@accountCacheAddition</p>
+
+@code {
+    private string? role;
+    private int? department;
+    private object? employee;
+    private object? account;
+
+    private string? roleCacheAddition;
+    private string? departmentCacheAddition;
+    private string? employeeCacheAddition;
+    private string? accountCacheAddition;
+
+    private async Task AddRoleToCacheAsync()
+    {
+        roleCacheAddition = "Loading Role Data...";
+
+        role = await testData.AddRoleCacheEntry();
+
+        roleCacheAddition = "Role Data LOADED XXXXXXXXXX!";
+    }
+
+    private async Task AddDepartmentToCacheAsync()
+    {
+        departmentCacheAddition = "Loading Department Data...";
+
+        department = await testData.AddDepartmentCacheEntry();
+
+        departmentCacheAddition = "Department Data LOADED XXXXXXXXXX!";
+    }
+
+    private async Task AddEmployeeToCacheAsync()
+    {
+        employeeCacheAddition = "Loading Employee Data...";
+
+        employee = await testData.AddEmployeeCacheEntry();
+
+        employeeCacheAddition = "Employee Data LOADED XXXXXXXXXX!";
+    }
+
+    private async Task AddAccountToCacheAsync()
+    {
+        accountCacheAddition = "Loading Account Data...";
+
+        account = await testData.AddAccountCacheEntry();
+
+        accountCacheAddition = "Account Data LOADED XXXXXXXXXX!";
+    }
+}
